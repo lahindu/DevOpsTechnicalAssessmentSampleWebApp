@@ -5,7 +5,7 @@ metadata:
   namespace: web-dmz
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /sample-web/$2
 spec:
   rules:
   - host: af2d0193e2c1044038a42568edb28475-f6f0b6e14619f39b.elb.ap-southeast-1.amazonaws.com
