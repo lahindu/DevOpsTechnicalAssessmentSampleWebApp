@@ -1,7 +1,7 @@
 <?php
  $servername = "sample-mysql-service";
- $username = "RGVtb1VzZXI=";
- $password = "RGVtb1VzZXJQYXNzdzByZA==";
+ $username = "DemoUser";
+ $password = "DemoUserPassw0rd";
  $dbname = "demo";
  if (isset($_POST['fname']) && isset($_POST['lname'])) {
      // Create connection

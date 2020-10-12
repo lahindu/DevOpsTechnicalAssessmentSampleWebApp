@@ -1,7 +1,7 @@
 <?php
  $servername = "sample-mysql-service";
- $username = "RGVtb1VzZXI=";
- $password = "RGVtb1VzZXJQYXNzdzByZA==";
+ $username = "DemoUser";
+ $password = "DemoUserPassw0rd";
  $dbname = "demo";
  
     // Create connection
@@ -11,6 +11,7 @@
     die("Connection failed: " . mysqli_connect_error());
     }
     $sql = "SELECT id, firstname, lastname FROM MyGuests";
+
     $result = mysqli_query($conn, $sql);
     
     if (mysqli_num_rows($result) > 0) {
