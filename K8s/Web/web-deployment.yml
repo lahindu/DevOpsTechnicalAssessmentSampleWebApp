@@ -40,8 +40,6 @@ spec:
           limits:
             memory: "512Mi"
             cpu: "200m"
-      imagePullSecrets: 
-      - name: ecr-login-token
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
