@@ -4,6 +4,9 @@ pipeline {
         stage('BUILD') {
             steps {
                 println "build stage"
+                println "GIT_COMMIT : ${env.GIT_COMMIT}"
+                println "GIT_BRANCH : ${env.GIT_BRANCH}"
+                println "GIT_REVISION : ${env.GIT_REVISION}"
                 sh 'docker build . -t 202256309025.dkr.ecr.ap-southeast-1.amazonaws.com/sample-web:v1'
                 withCredentials([usernamePassword(credentialsId: 'ecr-login', passwordVariable: 'password', usernameVariable: 'username')]) {
                     sh 'docker login --username $username --password $password 202256309025.dkr.ecr.ap-southeast-1.amazonaws.com'
