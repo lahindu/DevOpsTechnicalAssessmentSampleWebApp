@@ -1,0 +1,13 @@
+kind: Service 
+apiVersion: v1 
+metadata: 
+  name:  sample-mysql-service
+  namespace: web-dmz
+spec: 
+  selector: 
+    app: sample-mysql
+  ports: 
+  - protocol: TCP 
+    port: 3306
+    targetPort: 3306
+  type: ClusterIP

@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-mysql-deployment
+  namespace: web-dmz
+spec:
+  selector:
+    matchLabels:
+      app: sample-mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sample-mysql
+    spec:
+      containers:
+      - name: sample-mysql
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sample-web-secret
+              key: password
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: sample-web-secret
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sample-web-secret
+              key: password 
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 60
+          periodSeconds: 20
+        startupProbe:
+          tcpSocket:
+            port: 3306
+          failureThreshold: 15
+          periodSeconds: 10
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
+        volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: logs-storage
+          subPath: mysql
+      volumes:
+      - name: logs-storage
+        persistentVolumeClaim:
+          claimName: pv0001-pvc-web-dmz
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key:  eks.amazonaws.com/nodegroup
+                operator: In
+                values:
+                - PROJECT-01-PROD-EKS-1-NG-PRIVATE
+      dnsPolicy: ClusterFirst
