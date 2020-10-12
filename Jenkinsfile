@@ -11,7 +11,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'ecr-login', passwordVariable: 'password', usernameVariable: 'username')]) {
                     sh 'docker login --username $username --password $password 202256309025.dkr.ecr.ap-southeast-1.amazonaws.com'
                 }
-                sh "docker push 202256309025.dkr.ecr.ap-southeast-1.amazonaws.com/sample-web:"${env.GIT_COMMIT}"
+                sh "docker push 202256309025.dkr.ecr.ap-southeast-1.amazonaws.com/sample-web:${env.GIT_COMMIT}"
                 sh 'docker logout'
             }
         }
