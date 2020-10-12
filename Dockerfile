@@ -1,2 +1,2 @@
-FROM httpd:2.4
-ADD Web/ /usr/local/apache2/htdocs/sample-web/
+FROM lahindu/php:7.2
+ADD Web/ /var/www/site/sample-web/
