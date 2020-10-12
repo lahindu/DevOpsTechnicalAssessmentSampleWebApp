@@ -16,6 +16,7 @@ spec:
       containers:
       - name: sample-web
         image: 202256309025.dkr.ecr.ap-southeast-1.amazonaws.com/sample-web:IMAGETAG
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         readinessProbe:
