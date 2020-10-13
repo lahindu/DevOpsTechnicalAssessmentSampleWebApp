@@ -4,7 +4,7 @@ metadata:
   name: sample-web-deployment
   namespace: web-dmz
   labels:
-    sample-web
+    app: sample-web
 spec:
   selector:
     matchLabels:
