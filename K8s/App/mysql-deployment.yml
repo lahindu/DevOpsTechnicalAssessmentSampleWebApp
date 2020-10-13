@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: sample-mysql-deployment
   namespace: web-dmz
+  labels:
+    app: sample-mysql
 spec:
   selector:
     matchLabels:
