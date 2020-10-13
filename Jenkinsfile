@@ -13,7 +13,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'ecr-login', passwordVariable: 'password', usernameVariable: 'username')]) {
                     sh "docker login --username $username --password $password ${ECR_URL}"
                 }
-                sh "docker push  ${ECR_REPO}/sample-web:${env.GIT_COMMIT}"
+                sh "docker push  ${ECR_REPO}:${env.GIT_COMMIT}"
                 sh 'docker logout'
             }
         }
