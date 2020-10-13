@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment{
         ECR_REPO="202256309025.dkr.ecr.ap-southeast-1.amazonaws.com/sample-web"
+        ECR_URL="202256309025.dkr.ecr.ap-southeast-1.amazonaws.com"
         ELB_DNS="ac0f8f6349b1b462293165e8ab7b046f-ac60904ac142d0a2.elb.ap-southeast-1.amazonaws.com"
     }
     stages {
@@ -10,7 +11,7 @@ pipeline {
                 println "build stage"
                 sh "docker build . -t ${ECR_REPO}:${env.GIT_COMMIT}"
                 withCredentials([usernamePassword(credentialsId: 'ecr-login', passwordVariable: 'password', usernameVariable: 'username')]) {
-                    sh 'docker login --username $username --password $password 202256309025.dkr.ecr.ap-southeast-1.amazonaws.com'
+                    sh "docker login --username $username --password $password ${ECR_URL}"
                 }
                 sh "docker push  ${ECR_REPO}/sample-web:${env.GIT_COMMIT}"
                 sh 'docker logout'
