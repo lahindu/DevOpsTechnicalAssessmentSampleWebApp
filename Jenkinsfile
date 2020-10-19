@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment{
-        ECR_REPO="202256309025.dkr.ecr.ap-southeast-1.amazonaws.com/sample-web"
-        ECR_URL="202256309025.dkr.ecr.ap-southeast-1.amazonaws.com"
-        ELB_DNS="ab3a3ba98b8ae474bb69227fec49c826-92fd7f8a2c40aead.elb.ap-southeast-1.amazonaws.com"
+        ECR_REPO="xxxxxxxxxxxxxx.dkr.ecr.ap-southeast-1.amazonaws.com/sample-web"
+        ECR_URL="xxxxxxxxxxxxx.dkr.ecr.ap-southeast-1.amazonaws.com"
+        ELB_DNS="xxxxxxxxxxxxxxx-92fd7f8a2c40aead.elb.ap-southeast-1.amazonaws.com"
     }
     stages {
         stage('BUILD') {
